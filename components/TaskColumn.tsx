@@ -49,8 +49,6 @@ function SortableItem(props) {
     );
 }
 
-
-
 function Container(props) {
     const { id, items, color } = props;
 
@@ -71,7 +69,7 @@ function Container(props) {
                     <div className="font-bold">
                         Task Name
                     </div>
-                    <div className={`py-1 px-2 m-1 rounded-lg border border-gray-200 shadow-md`}>
+                    <div className={`py-1 px-2 m-1 rounded-lg border border-gray-200 shadow-md cursor-pointer`}>
                         +
                     </div>
                 </div>
