@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator js {
+    provider        = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+    provider             = "mysql"
+    url                  = env("DATABASE_URL")
+    shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
+    referentialIntegrity = "prisma"
+}
+
+model Task {
+    id           Int        @id @default(autoincrement())
+    title        String
+    completed    Boolean    @default(false)
+    TaskColumn   TaskColumn @relation(fields: [taskColumnId], references: [id])
+    taskColumnId Int
+
+    @@index([taskColumnId])
+}
+
+model TaskColumn {
+    id    Int    @id @default(autoincrement())
+    name  String
+    Tasks Task[]
+}
